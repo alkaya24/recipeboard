@@ -12,11 +12,7 @@ if ($result->num_rows > 0) {
 }
 
 header('Content-Type: application/json');
-echo json_encode(array_map(function($recipe) {
-  $recipe['description'] = nl2br($recipe['description']);
-  return $recipe;
-}, $recipes));
-
+echo json_encode($recipes);
 
 $conn->close();
 ?>
