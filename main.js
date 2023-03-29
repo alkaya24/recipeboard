@@ -238,7 +238,7 @@ function displayRecipes(recipes) {
     item.classList.add("item");
 
     const card = `
-          <div class="card shadow" style="width: 18rem;">
+          <div class="card shadow" style="width: 18rem; height: 22rem;">
             <img src="${JSON.parse(recipe.image)[0]}" class="card-img-top" alt="bild">
             <div class="card-body">
               <h5 class="card-title">${recipe.title}</h5>
@@ -250,8 +250,28 @@ function displayRecipes(recipes) {
 
     item.innerHTML = card;
     carousel.insertBefore(item, carousel.firstChild);
+
+    // Karussell neu initialisieren
+  const owlCarousel = $(`.owl-carousel.carousel-${category}`);
+  owlCarousel.trigger('destroy.owl.carousel');
+  owlCarousel.html(owlCarousel.find('.owl-stage-outer').html()).removeClass('owl-loaded');
+  owlCarousel.owlCarousel({
+    loop: true,
+    margin: 10,
+    nav: true,
+    responsive: {
+      0: {
+        items: 1
+      },
+      600: {
+        items: 3
+      },
+      1000: {
+        items: 4
+      }
+    }
   });
-  reinitializeCarousel();
+  });
 }
 
 function getCategoryName(categoryId) {
