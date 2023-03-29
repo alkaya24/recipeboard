@@ -135,6 +135,8 @@ function updateLoginLogoutButtons() {
 function logoutUser() {
     sessionStorage.removeItem('loggedIn');
     updateLoginLogoutButtons();
+    alert("Erfolgreich abgemeldet!");
+    window.location.href = "index.html";
 }
 
 function validateEmail(email) {
@@ -162,19 +164,18 @@ function loginUser() {
     data.append('login-password', password);
 
     fetch('login.php', {
-        method: 'POST',
-        body: data
+      method: 'POST',
+      body: data
     })
-    .then(response => response.text())
+    .then(response => response.json())
     .then(result => {
-        if (result.startsWith("Erfolgreich")) {
+        if (result.status === "Erfolgreich angemeldet!") {
             sessionStorage.setItem('loggedIn', true);
             checkLoggedIn();
             updateLoginLogoutButtons();
-            
-            window.location.href = "addRecipe.php";
+            window.location.href = "index.html";
         } else {
-            alert(result);
+            alert(result.message);
         }
     })
     .catch(error => {

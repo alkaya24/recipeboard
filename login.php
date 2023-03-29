@@ -24,10 +24,10 @@
                         $_SESSION['vorname'] = $vorname;
                         $_SESSION['nachname'] = $nachname;
                         $_SESSION['email'] = $email;
-    
-                        echo "Erfolgreich angemeldet.";
+                        echo json_encode(['status' => 'Erfolgreich angemeldet!']);
+                        header("Location: index.html");
                     } else {
-                        echo "Falsches Passwort.";
+                        echo json_encode(['status' => 'error', 'message' => 'Falsches Passwort.']);
                     }
                 }
             } else {
