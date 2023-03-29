@@ -226,7 +226,7 @@ function displayRecipes(recipes) {
   const categories = ["Abendessen", "Mittagessen", "Frühstück", "Snacks", "Getränke"];
   categories.forEach((category) => {
     const carousel = document.querySelector(`.carousel-${category}`);
-    carousel.innerHTML = "";
+    
   });
 
   // Befüllen Sie die Karussells mit den neuen Rezepten.
@@ -249,7 +249,7 @@ function displayRecipes(recipes) {
         `;
 
     item.innerHTML = card;
-    carousel.appendChild(item);
+    carousel.insertBefore(item, carousel.firstChild);
 
     // Karussell neu initialisieren
   const owlCarousel = $(`.owl-carousel.carousel-${category}`);
