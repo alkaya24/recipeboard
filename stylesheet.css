@@ -19,6 +19,10 @@ section
     margin-right: 5%;
 }
 
+img
+{
+    max-height: 12rem;
+}
 .card-img-top
 {
     height: 220px;
