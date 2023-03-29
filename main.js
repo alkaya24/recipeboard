@@ -249,7 +249,7 @@ function displayRecipes(recipes) {
         `;
 
     item.innerHTML = card;
-    carousel.insertBefore(item, carousel.firstChild);
+    carousel.appendChild(item);
 
     // Karussell neu initialisieren
   const owlCarousel = $(`.owl-carousel.carousel-${category}`);
@@ -289,15 +289,5 @@ function getCategoryName(categoryId) {
     default:
       return "";
   }
-}
-
-function reinitializeCarousel() {
-  const categories = ["Abendessen", "Mittagessen", "Frühstück", "Snacks", "Getränke"];
-  categories.forEach((category) => {
-    const carousel = document.querySelector(`.carousel-${category}`);
-    const carouselInstance = new bootstrap.Carousel(carousel, {
-      interval: false
-    });
-  });
 }
 
