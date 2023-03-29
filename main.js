@@ -252,25 +252,25 @@ function displayRecipes(recipes) {
     carousel.insertBefore(item, carousel.firstChild);
 
     // Karussell neu initialisieren
-  const owlCarousel = $(`.owl-carousel.carousel-${category}`);
-  owlCarousel.trigger('destroy.owl.carousel');
-  owlCarousel.html(owlCarousel.find('.owl-stage-outer').html()).removeClass('owl-loaded');
-  owlCarousel.owlCarousel({
-    loop: true,
-    margin: 10,
-    nav: true,
-    responsive: {
-      0: {
-        items: 1
-      },
-      600: {
-        items: 3
-      },
-      1000: {
-        items: 4
+    const owlCarousel = $(`.owl-carousel.carousel-${category}`);
+    owlCarousel.trigger('destroy.owl.carousel');
+    owlCarousel.html(owlCarousel.find('.owl-stage-outer').html()).removeClass('owl-loaded');
+    owlCarousel.owlCarousel({
+      loop: true,
+      margin: 10,
+      nav: true,
+      responsive: {
+        0: {
+          items: 1
+        },
+        600: {
+          items: 3
+        },
+        1000: {
+          items: 4
+        }
       }
-    }
-  });
+    });
   });
 }
 
