@@ -118,7 +118,7 @@
               <option value="1">Leicht</option>
               <option value="2">Mittel</option>
               <option value="3">Schwer</option>
-              <option value="3">Bruder vertrau, mach nicht</option>
+              <option value="4">Bruder vertrau, mach nicht</option>
             </select>
             <label for="exampleFormControlInput1" class="form-label form-control-lg">Zutaten</label>
             <textarea class="scrollabletextbox" name="note" style="width: 100%; height: 8em;" id="zutaten"></textarea>

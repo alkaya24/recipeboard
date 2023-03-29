@@ -36,7 +36,7 @@ $stmt->bind_param("ssissssi", $title, $category, $duration, $difficulty, $ingred
 
 $result = $stmt->execute();
 if ($result) {
-    echo "Rezept wurde erfolgreich hinzugefügt";
+    echo json_encode(['status' => 'Rezept wurde erfolgreich hinzugefügt']);
 } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
 }

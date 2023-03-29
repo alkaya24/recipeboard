@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", function () {
             `;
   
             item.innerHTML = card;
-            carousel.appendChild(item);
+            carousel.insertBefore(item, carousel.firstChild);
           });
 
           // Karussell neu initialisieren
@@ -103,11 +103,11 @@ function submitRecipe() {
         method: 'POST',
         body: formData,
         })
-        .then((response) => response.text())
+        .then((response) => response.json())
         .then((result) => {
-        if (result.includes("erfolgreich")) {
-            alert(result);
-        window.location.href = "index.html";
+        if (result.status.includes("erfolgreich")) {
+          alert(result.status);
+          window.location.href = "index.html";
         } else {
         alert("Fehler beim Hinzufügen des Rezepts. Bitte versuchen Sie es erneut.");
         }
@@ -169,10 +169,11 @@ function loginUser() {
     })
     .then(response => response.json())
     .then(result => {
-        if (result.status === "Erfolgreich angemeldet!") {
+        if (result.status.startsWith("Erfolgreich")) {
             sessionStorage.setItem('loggedIn', true);
             checkLoggedIn();
             updateLoginLogoutButtons();
+            alert(result.status);
             window.location.href = "index.html";
         } else {
             alert(result.message);
@@ -217,10 +218,10 @@ function registerUser() {
     method: 'POST',
     body: formData
     })
-    .then(response => response.text())
+    .then(response => response.json())
     .then(result => {
-        if (result.startsWith("Erfolgreich")) {
-            alert(result);
+        if (result.status.startsWith("Erfolgreich")) {
+            alert(result.status);
             window.location.href = "index.html";
         } else {
             alert(result);

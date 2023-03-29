@@ -29,7 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $result = $stmt->execute();
     
         if ($result) {
-            echo "Erfolgreich registriert! Sie können sich jetzt anmelden.";
+            echo json_encode(['status' => 'Erfolgreich registriert! Sie können sich jetzt anmelden.']);
         } else {
             echo "Fehler: " . $sql . "<br>" . $conn->error;
         }
