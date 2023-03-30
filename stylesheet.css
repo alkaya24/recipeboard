@@ -1,44 +1,48 @@
-.container-fluid
-{
+/* Definiert den Abstand des oberen Bereichs von .container-fluid */
+.container-fluid {
     margin-top: 2em;
 }
 
+/* Definiert, dass das Menü vollständig ausgefüllt wird */
 .navbar-collapse {
     flex-basis: 100%;
     flex-grow: 1;
 }
- 
+
+/* Definiert die Farbe der Links in der Menüleiste */
 .navbar .navbar-nav .nav-link {
     color: black;
-  }
-  
-  .navbar .navbar-nav .nav-link:hover,
-  .navbar .navbar-nav .nav-link:focus {
-    color: rgba(0, 0, 0, 0.8);
-  }
+}
 
-footer
-{
+/* Definiert die Farbe der Links in der Menüleiste beim Überfahren mit der Maus oder beim Fokussieren */
+.navbar .navbar-nav .nav-link:hover,
+.navbar .navbar-nav .nav-link:focus {
+    color: rgba(0, 0, 0, 0.8);
+}
+
+/* Definiert den Abstand des oberen Bereichs des Footers */
+footer {
     margin-top: 1em;
 }
 
-section
-{
+/* Definiert den Abstand des linken und rechten Bereichs des Inhaltsbereichs */
+section {
     margin-left: 5%;
     margin-right: 5%;
 }
 
-img
-{
+/* Definiert die maximale Höhe von Bildern */
+img {
     max-height: 12rem;
 }
-.card-img-top
-{
+
+/* Definiert die Höhe und Anpassung von Bildern in Karten */
+.card-img-top {
     height: 220px;
     object-fit: contain;
 }
 
-#login-email
-{
+/* Definiert den Abstand des unteren Bereichs des E-Mail-Eingabefelds */
+#login-email {
     margin-bottom: 5px;
 }

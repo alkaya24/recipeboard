@@ -1,8 +1,14 @@
 <?php
+
+// Starte die Session, um auf die Session-Variablen zugreifen zu können
 session_start();
+
+// Verbindung zur Datenbank herstellen
 require_once 'config.php';
 
+// Überprüfe, ob das Formular abgeschickt wurde
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Benutzerdaten aus dem Formular holen
     $firstname = $_POST['firstname'];
     $lastname = $_POST['lastname'];
     $email = $_POST['email'];
@@ -27,15 +33,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("ssss", $firstname, $lastname, $email, $hashed_password);
         $result = $stmt->execute();
-    
+
         if ($result) {
+            // Benutzer erfolgreich registriert, geben eine Bestätigung aus
             echo json_encode(['status' => 'Erfolgreich registriert! Sie können sich jetzt anmelden.']);
         } else {
+            // Fehler beim Eintragen in die Datenbank
             echo "Fehler: " . $sql . "<br>" . $conn->error;
         }
     }
 }
-    $stmt->close();
-    $conn->close();
 
-    ?>
+// Schließe das Statement und die Verbindung zur Datenbank
+$stmt->close();
+$conn->close();
+?>

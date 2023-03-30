@@ -1,10 +1,36 @@
+// Überprüfen, ob der Benutzer angemeldet ist, wenn die Seite geladen ist
+window.addEventListener('DOMContentLoaded', checkLoggedIn);
+
+// Event-Listener zum Aktualisieren der Login- und Logout-Buttons, wenn die Seite geladen wird
+document.addEventListener('DOMContentLoaded', function () {
+  updateLoginLogoutButtons();
+});
+
+// Event-Listener, um zu überprüfen, ob der Benutzer auf den Login- oder Registrierungsbutton klickt
+$(document).ready(function () {
+  // Event-Listener, um zu überprüfen, ob der Benutzer auf den Login- oder Registrierungsbutton klickt
+  $('#login-button').on('click', function (e) {
+    e.preventDefault();
+    loginUser();
+  });
+
+  // Event-Listener für den Registrierungs-Button
+  $('#register-button').on('click', function (e) {
+    e.preventDefault();
+    registerUser();
+  });
+});
+
+// Funktion zum Überprüfen, ob ein Benutzer angemeldet ist oder nicht
 function checkLoggedIn() {
   const isLoggedIn = sessionStorage.getItem('loggedIn');
 
+  // Wenn der Benutzer angemeldet ist, werden Links zu "Rezept hinzufügen" und "Meine Rezepte" angezeigt
   if (isLoggedIn) {
     document.getElementById('addRecipeLink').href = "addRecipe.php";
     document.getElementById('myRecipesLink').href = "meineRezepte.php";
   } else {
+    // Wenn der Benutzer nicht angemeldet ist, werden Links zu den Modalen "Anmelden" und "Registrieren" hinzugefügt
     document.getElementById('addRecipeLink').href = "#";
     document.getElementById('addRecipeLink').setAttribute('data-bs-toggle', 'modal');
     document.getElementById('addRecipeLink').setAttribute('data-bs-target', '#exampleModal');
@@ -16,21 +42,134 @@ function checkLoggedIn() {
   }
 }
 
+// Funktion zum Aktualisieren der Login- und Logout-Buttons basierend auf dem angemeldeten Status
+function updateLoginLogoutButtons() {
+  const loggedIn = sessionStorage.getItem('loggedIn');
+  const loginButton = document.querySelector('[data-bs-target="#exampleModal"]');
+  const logoutButton = document.getElementById('logoutButton');
 
-window.addEventListener('DOMContentLoaded', checkLoggedIn);
-
-document.addEventListener('DOMContentLoaded', function () {
-  updateLoginLogoutButtons();
-});
-
-function validateImageCount(input) {
-  const maxFileCount = 5;
-  if (input.files.length > maxFileCount) {
-    alert(`Sie können maximal ${maxFileCount} Bilder auswählen.`);
-    input.value = "";
+  // Wenn der Benutzer angemeldet ist, den Anmelde-Button ausblenden und den Abmelde-Button anzeigen
+  if (loggedIn) {
+    loginButton.style.display = 'none';
+    logoutButton.style.display = 'block';
+  } else {
+    // Wenn der Benutzer nicht angemeldet ist, den Abmelde-Button ausblenden und den Anmelde-Button anzeigen
+    loginButton.style.display = 'block';
+    logoutButton.style.display = 'none';
   }
 }
 
+// Funktion zum Abmelden des Benutzers
+function logoutUser() {
+  sessionStorage.removeItem('loggedIn');
+  updateLoginLogoutButtons();
+  alert("Erfolgreich abgemeldet!");
+  window.location.href = "index.html";
+}
+
+// Funktion zur Überprüfung der Gültigkeit einer E-Mail-Adresse
+function validateEmail(email) {
+  const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  return re.test(String(email).toLowerCase());
+}
+
+// Funktion zum Anmelden des Benutzers
+function loginUser() {
+  const email = document.getElementById("login-email").value;
+  const password = document.getElementById("login-password").value;
+
+  // Überprüfen der E-Mail-Adresse
+  if (!validateEmail(email)) {
+    alert("Bitte geben Sie eine gültige E-Mail-Adresse ein.");
+    return;
+  }
+
+  // Überprüfen des Passworts
+  if (!password || password.length < 6) {
+    alert("Bitte geben Sie ein gültiges Passwort ein (mindestens 6 Zeichen).");
+    return;
+  }
+
+  const data = new FormData();
+  data.append('login-email', email);
+  data.append('login-password', password);
+
+  // Abrufen der Antwort vom Server
+  fetch('login.php', {
+    method: 'POST',
+    body: data
+  })
+    .then(response => response.json())
+    .then(result => {
+      // Überprüfen, ob die Anmeldung erfolgreich war
+      if (result.status.startsWith("Erfolgreich")) {
+        sessionStorage.setItem('loggedIn', true);
+        checkLoggedIn();
+        updateLoginLogoutButtons();
+        alert(result.status);
+        window.location.href = "index.html";
+      } else {
+        alert(result.message);
+      }
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
+}
+
+// Registrierungs-Funktion
+function registerUser() {
+  const firstname = document.getElementById("firstname").value;
+  const lastname = document.getElementById("lastname").value;
+  const email = document.getElementById("register-email").value;
+  const password = document.getElementById("register-password").value;
+  const confirmPassword = document.getElementById("confirm-password").value;
+
+  // Überprüfen der E-Mail-Adresse
+  if (!validateEmail(email)) {
+    alert("Bitte geben Sie eine gültige E-Mail-Adresse ein.");
+    return;
+  }
+
+  // Überprüfen des Passworts
+  if (!password || password.length < 6) {
+    alert("Bitte geben Sie ein gültiges Passwort ein (mindestens 6 Zeichen).");
+    return;
+  }
+
+  // Überprüfen, ob das Passwort und die Bestätigung übereinstimmen
+  if (password !== confirmPassword) {
+    alert('Passwörter stimmen nicht überein. Bitte versuchen Sie es erneut.');
+    return;
+  }
+
+  const formData = new FormData();
+  formData.append('firstname', firstname);
+  formData.append('lastname', lastname);
+  formData.append('email', email);
+  formData.append('password', password);
+
+  // Abrufen der Antwort vom Server
+  fetch('register.php', {
+    method: 'POST',
+    body: formData
+  })
+    .then(response => response.json())
+    .then(result => {
+      // Überprüfen, ob die Registrierung erfolgreich war
+      if (result.status.startsWith("Erfolgreich")) {
+        alert(result.status);
+        window.location.href = "index.html";
+      } else {
+        alert(result);
+      }
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
+}
+
+// Funktion zum Einreichen des Rezepts
 function submitRecipe() {
   const title = document.getElementById('titel').value;
   const category = document.getElementById('kategorie').value;
@@ -60,12 +199,14 @@ function submitRecipe() {
     }
   }
 
+  // Senden der Formulardaten an den Server
   fetch('addRecipeAction.php', {
     method: 'POST',
     body: formData,
   })
     .then((response) => response.json())
     .then((result) => {
+      // Überprüfen, ob das Hinzufügen erfolgreich war
       if (result.status.includes("erfolgreich")) {
         alert(result.status);
         window.location.href = "meineRezepte.php";
@@ -79,134 +220,16 @@ function submitRecipe() {
     });
 }
 
-function updateLoginLogoutButtons() {
-  const loggedIn = sessionStorage.getItem('loggedIn');
-  const loginButton = document.querySelector('[data-bs-target="#exampleModal"]');
-  const logoutButton = document.getElementById('logoutButton');
-
-  if (loggedIn) {
-    loginButton.style.display = 'none';
-    logoutButton.style.display = 'block';
-  } else {
-    loginButton.style.display = 'block';
-    logoutButton.style.display = 'none';
+// Funktion zum Überprüfen der Anzahl der ausgewählten Bilder
+function validateImageCount(input) {
+  const maxFileCount = 5;
+  if (input.files.length > maxFileCount) {
+    alert(`Sie können maximal ${maxFileCount} Bilder auswählen.`);
+    input.value = "";
   }
 }
 
-function logoutUser() {
-  sessionStorage.removeItem('loggedIn');
-  updateLoginLogoutButtons();
-  alert("Erfolgreich abgemeldet!");
-  window.location.href = "index.html";
-}
-
-function validateEmail(email) {
-  const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-  return re.test(String(email).toLowerCase());
-}
-
-// Login-Funktion
-function loginUser() {
-  const email = document.getElementById("login-email").value;
-  const password = document.getElementById("login-password").value;
-
-  if (!validateEmail(email)) {
-    alert("Bitte geben Sie eine gültige E-Mail-Adresse ein.");
-    return;
-  }
-
-  if (!password || password.length < 6) {
-    alert("Bitte geben Sie ein gültiges Passwort ein (mindestens 6 Zeichen).");
-    return;
-  }
-
-  const data = new FormData();
-  data.append('login-email', email);
-  data.append('login-password', password);
-
-  fetch('login.php', {
-    method: 'POST',
-    body: data
-  })
-    .then(response => response.json())
-    .then(result => {
-      if (result.status.startsWith("Erfolgreich")) {
-        sessionStorage.setItem('loggedIn', true);
-        checkLoggedIn();
-        updateLoginLogoutButtons();
-        alert(result.status);
-        window.location.href = "index.html";
-      } else {
-        alert(result.message);
-      }
-    })
-    .catch(error => {
-      console.error('Error:', error);
-    });
-}
-
-// Registrierungs-Funktion
-function registerUser() {
-  const firstname = document.getElementById("firstname").value;
-  const lastname = document.getElementById("lastname").value;
-  const email = document.getElementById("register-email").value;
-  const password = document.getElementById("register-password").value;
-  const confirmPassword = document.getElementById("confirm-password").value;
-  //const profileImageInput = document.getElementById("profile-image");
-
-  if (!validateEmail(email)) {
-    alert("Bitte geben Sie eine gültige E-Mail-Adresse ein.");
-    return;
-  }
-
-  if (!password || password.length < 6) {
-    alert("Bitte geben Sie ein gültiges Passwort ein (mindestens 6 Zeichen).");
-    return;
-  }
-
-  if (password !== confirmPassword) {
-    alert('Passwörter stimmen nicht überein. Bitte versuchen Sie es erneut.');
-    return;
-  }
-
-  const formData = new FormData();
-  formData.append('firstname', firstname);
-  formData.append('lastname', lastname);
-  formData.append('email', email);
-  formData.append('password', password);
-
-  fetch('register.php', {
-    method: 'POST',
-    body: formData
-  })
-    .then(response => response.json())
-    .then(result => {
-      if (result.status.startsWith("Erfolgreich")) {
-        alert(result.status);
-        window.location.href = "index.html";
-      } else {
-        alert(result);
-      }
-    })
-    .catch(error => {
-      console.error('Error:', error);
-    });
-}
-
-// Event-Listener für Login- und Registrierungs-Buttons
-$(document).ready(function () {
-  $('#login-button').on('click', function (e) {
-    e.preventDefault();
-    loginUser();
-  });
-
-
-  $('#register-button').on('click', function (e) {
-    e.preventDefault();
-    registerUser();
-  });
-});
-
+// Funktion zum Suchen von Rezepten basierend auf dem eingegebenen Suchbegriff
 function searchRecipes() {
   const searchTerm = document.getElementById("searchBar").value;
 
@@ -216,13 +239,16 @@ function searchRecipes() {
     return;
   }
 
+  // Abrufen der Suchergebnisse vom Server
   fetch(`search.php?searchTerm=${searchTerm}`)
     .then((response) => response.json())
     .then((recipes) => {
+
       displayFilteredRecipes(recipes);
     });
 }
 
+// Funktion zum Anzeigen aller Rezepte
 function displayAllRecipes() {
   fetch("fetch_recipes.php")
     .then((response) => response.json())
@@ -231,10 +257,12 @@ function displayAllRecipes() {
     });
 }
 
+// Funktion zum Anzeigen gefilterter Rezepte
 function displayFilteredRecipes(recipes) {
   displayRecipes(recipes);
 }
 
+// Funktion zum Anzeigen von Rezepten
 function displayRecipes(recipes) {
   // Löschen Sie zuerst den Inhalt der Karussells.
   const categories = ["Abendessen", "Mittagessen", "Frühstück", "Snacks", "Getränke"];
@@ -288,6 +316,7 @@ function displayRecipes(recipes) {
   });
 }
 
+// Funktion zum Ermitteln des Kategoriennamens anhand der Kategorie-ID
 function getCategoryName(categoryId) {
   switch (categoryId) {
     case "1":
@@ -305,9 +334,11 @@ function getCategoryName(categoryId) {
   }
 }
 
+// Event-Listener für das Laden der Seite
 document.addEventListener("DOMContentLoaded", () => {
   const carousels = document.querySelectorAll(".owl-carousel");
 
+  // Event-Listener für das Klicken auf einen "Öffnen"-Button in den Karussells
   carousels.forEach((carousel) => {
     carousel.addEventListener("click", (event) => {
       if (event.target.classList.contains("btn")) {
@@ -317,25 +348,28 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
+  // Wenn sich die Seite im Gericht-Modus befindet, zeige die Details des ausgewählten Rezepts an
   if (window.location.pathname.endsWith("Gericht.html")) {
     displayRecipeDetails();
   }
 });
 
+// Funktion zum Anzeigen der Rezeptdetails auf der Gerichtsseite
 function displayRecipeDetails() {
   const recipeId = localStorage.getItem("selectedRecipeId");
 
   if (!recipeId) {
-    // Redirect to the main page if no recipe is selected
+    // Wenn kein Rezept ausgewählt wurde, umleiten Sie zur Hauptseite
     window.location.href = "index.html";
     return;
   }
 
+  // Abrufen der Rezeptdetails vom Server
   fetch(`fetch_recipe_details.php?id=${recipeId}`)
     .then((response) => response.json())
     .then((recipe) => {
       if (recipe) {
-        // Set recipe title
+        // Setze den Rezepttitel
         const titleCol = document.querySelector("#grid1 .col:first-child");
         if (titleCol) {
           const title = titleCol.querySelector("h2");
@@ -344,20 +378,20 @@ function displayRecipeDetails() {
           }
         }
 
-        // Set recipe duration
+        // Setze die Zubereitungsdauer des Rezepts
         const duration = document.getElementById("duration");
         if (duration) {
           duration.innerText = `${getDurationText(recipe.duration)} Minuten`;
         }
 
-        // Set recipe difficulty
+        // Setze die Schwierigkeit des Rezepts
         const difficulty = document.getElementById("difficulty");
         if (difficulty) {
           difficulty.innerText = getDifficultyText(recipe.difficulty);
         }
 
 
-        // Set recipe ingredients
+        // Setze die Zutaten des Rezepts
         const ingredientsCol = document.querySelector("#grid1 .col:nth-child(2)");
         if (ingredientsCol) {
           const ingredients = ingredientsCol.querySelector("p");
@@ -366,7 +400,7 @@ function displayRecipeDetails() {
           }
         }
 
-        // Set recipe preparation
+        // Setze die Zubereitung des Rezepts
         const preparationCol = document.querySelector("#grid1 .col:nth-child(3)");
         if (preparationCol) {
           const preparation = preparationCol.querySelector("p");
@@ -375,10 +409,10 @@ function displayRecipeDetails() {
           }
         }
 
-        // Set recipe images
+        // Setze die Bilder des Rezepts
         const images = JSON.parse(recipe.image);
 
-        // Set carousel indicators
+        // Setze die Indikatoren des Karussells
         const carouselIndicators = document.querySelector(".carousel-indicators");
         carouselIndicators.innerHTML = "";
 
@@ -397,7 +431,7 @@ function displayRecipeDetails() {
           carouselIndicators.appendChild(indicatorButton);
         });
 
-
+        // Setze die Karussellbilder
         const carouselInner = document.querySelector(".carousel-inner");
         carouselInner.innerHTML = "";
 
@@ -416,12 +450,13 @@ function displayRecipeDetails() {
           carouselInner.appendChild(carouselItem);
         });
       } else {
-        // Redirect to the main page if the recipe is not found
+        // Weiterleitung zur Hauptseite, wenn das Rezept nicht gefunden wurde
         window.location.href = "index.html";
       }
     });
 }
 
+// Gibt den Text für die Dauer des Rezepts zurück, basierend auf der übergebenen Indexzahl
 function getDurationText(index) {
   const durationOptions = {
     1: "< 10",
@@ -437,6 +472,7 @@ function getDurationText(index) {
   return durationOptions[index] || "";
 }
 
+// Gibt den Text für die Schwierigkeit des Rezepts zurück, basierend auf der übergebenen Indexzahl
 function getDifficultyText(index) {
   const difficultyOptions = {
     1: "Leicht",
@@ -447,5 +483,3 @@ function getDifficultyText(index) {
 
   return difficultyOptions[index] || "";
 }
-
-

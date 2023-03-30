@@ -1,13 +1,16 @@
+/* Skaliere das Bild auf die volle Höhe und Breite */
 .carousel-item img {
-    height: 100% !important;
-    width: 100% !important;
+  height: 100% !important;
+  width: 100% !important;
 }
 
+/* Setze die Farbe der Navigationslinks auf Schwarz */
 .navbar .navbar-nav .nav-link {
-    color: black;
-  }
-  
-  .navbar .navbar-nav .nav-link:hover,
-  .navbar .navbar-nav .nav-link:focus {
-    color: rgba(0, 0, 0, 0.8);
-  }
+  color: black;
+}
+
+/* Ändere die Farbe der Navigationslinks beim Hover oder Fokus auf einen gedämpften Schwarzton */
+.navbar .navbar-nav .nav-link:hover,
+.navbar .navbar-nav .nav-link:focus {
+  color: rgba(0, 0, 0, 0.8);
+}

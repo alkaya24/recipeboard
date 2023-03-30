@@ -1,6 +1,5 @@
-h2
-{
+/* Definiert den Abstand (Padding) oben und unten für alle h2-Elemente */
+h2 {
     padding-top: 10px;
     padding-bottom: 10px;
 }
-
