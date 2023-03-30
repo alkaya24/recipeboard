@@ -26,7 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($result->num_rows > 0) {
         // Wenn ein Eintrag bereits vorhanden ist, geben wir eine Fehlermeldung aus und beenden die Ausführung des Skripts
-        echo "Ein Benutzer mit diesem Benutzernamen oder dieser E-Mail-Adresse existiert bereits.";
+        echo json_encode(['status' => 'Ein Benutzer mit dieser E-Mail-Adresse existiert bereits.']);
     } else {
         // Wenn kein Eintrag gefunden wurde, fügen wir die neuen Daten in die Datenbank ein
         $sql = "INSERT INTO users (vorname, nachname, email, password) VALUES (?, ?, ?, ?)";
@@ -39,7 +39,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             echo json_encode(['status' => 'Erfolgreich registriert! Sie können sich jetzt anmelden.']);
         } else {
             // Fehler beim Eintragen in die Datenbank
-            echo "Fehler: " . $sql . "<br>" . $conn->error;
+            echo json_encode(['status' => 'Fehler. Versuchen Sie es erneut!']);
         }
     }
 }

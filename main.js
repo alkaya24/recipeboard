@@ -109,7 +109,7 @@ function loginUser() {
         alert(result.status);
         window.location.href = "index.html";
       } else {
-        alert(result.message);
+        alert(result.status);
       }
     })
     .catch(error => {
@@ -161,7 +161,7 @@ function registerUser() {
         alert(result.status);
         window.location.href = "index.html";
       } else {
-        alert(result);
+        alert(result.status);
       }
     })
     .catch(error => {
