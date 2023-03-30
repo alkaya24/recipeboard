@@ -1,9 +1,4 @@
-document.addEventListener("DOMContentLoaded", function () {
 
-  displayAllRecipes();
-
-  
-});
 
 function checkLoggedIn() {
   const isLoggedIn = sessionStorage.getItem('loggedIn');
