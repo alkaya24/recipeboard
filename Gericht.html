@@ -63,11 +63,11 @@
               Entdecken
             </a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Abendessen</a></li>
-              <li><a class="dropdown-item" href="#">Mittagessen</a></li>
-              <li><a class="dropdown-item" href="#">Frühstück</a></li>
-              <li><a class="dropdown-item" href="#">Snacks</a></li>
-              <li><a class="dropdown-item" href="#">Drinks</a></li>
+              <li><a class="dropdown-item" href="index.html#Abendessen">Abendessen</a></li>
+              <li><a class="dropdown-item" href="index.html#Mittagessen">Mittagessen</a></li>
+              <li><a class="dropdown-item" href="index.html#Frühstück">Frühstück</a></li>
+              <li><a class="dropdown-item" href="index.html#Snacks">Snacks</a></li>
+              <li><a class="dropdown-item" href="index.html#Getränke">Getränke</a></li>
             </ul>
           </li>
         </ul>
@@ -81,38 +81,10 @@
   </nav>
   <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-indicators">
-      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
-      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+      
     </div>
     <div class="carousel-inner">
-      <div class="carousel-item active">
-        <div class="overlay-image" style="background-image:url(./essen1.jpg);"></div>
-        <div class="container" id="conti">
-          <div class="carousel-caption text-start">
-            <!-- <h1 style="text-shadow: 0px 0px 20px #000000;">Example headline.</h1>
-            <p style="text-shadow: 0px 0px 20px #000000;">Some representative placeholder content for the first slide of the carousel.</p> -->
-          </div>
-        </div>
-      </div>
-      <div class="carousel-item">
-        <div class="overlay-image" style="background-image:url(./essen2.jpg);"></div>
-        <div class="container" id="conti">
-          <div class="carousel-caption">
-            <!-- <h1 style="text-shadow: 0px 0px 20px #000000;">Another example headline.</h1>
-            <p style="text-shadow: 0px 0px 20px #000000;">Some representative placeholder content for the second slide of the carousel.</p> -->
-          </div>
-        </div>
-      </div>
-      <div class="carousel-item">
-        <div class="overlay-image" style="background-image:url(./essen3.jpg);"></div>
-        <div class="container" id="conti">
-          <div class="carousel-caption text-end">
-            <!-- <h1 style="text-shadow: 0px 0px 20px #000000;">One more for good measure.</h1>
-            <p style="text-shadow: 0px 0px 20px #000000;">Some representative placeholder content for the third slide of this carousel.</p> -->
-          </div>
-        </div>
-      </div>
+      <!-- Bilder eingefügt -->
     </div>
     <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -124,40 +96,24 @@
     </button>
   </div>
 
-  <div class="container text-left" id="grid1">
-    <div class="row">
-      <div class="col">
-        <h2>Titel: </h2>
-        <p>
 
-        </p>
-        <h4>Dauer: <p>bla bla bla Minuten</p></h4>
-        <h4>Schwierigkeit: <p>Bruder vertrau masch nicht</p></h4>
-      </div>
-      <div class="col">
-        <h2>Zutaten:</h2>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi pariatur consequatur facere obcaecati quidem eos quaerat iste porro voluptate possimus, at odit. Repellendus laborum facilis soluta quos minima! Quis, eaque.
-        </p>
-      </div>
-      <div class="col">
-        <h2>Zubereitung:</h2>
-        <p>
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. In soluta doloribus inventore quibusdam voluptatum, fuga reprehenderit ab iste corrupti cum quia distinctio, labore minima fugiat deleniti consequatur reiciendis voluptatem aliquam?
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aperiam ut officia odit excepturi, cum sapiente mollitia accusantium corporis, tempore tenetur explicabo veritatis eveniet ea dolore quo, in fugit fuga qui.
-        </p>
-      </div>
+<div class="container text-left" id="grid1">
+  <div class="row">
+    <div class="col">
+      <h2>Titel: </h2>
+      <h4>Dauer: <p id="duration"></p></h4>
+      <h4>Schwierigkeit: <p id="difficulty"></p></h4>
+    </div>
+    <div class="col">
+      <h2>Zutaten:</h2>
+      <p></p>
+    </div>
+    <div class="col">
+      <h2>Zubereitung:</h2>
+      <p></p>
     </div>
   </div>
-
-
-
-
-
-
-
-
-
+</div>
 
 
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

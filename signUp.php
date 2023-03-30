@@ -63,11 +63,11 @@
                   Entdecken
                 </a>
                 <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">Abendessen</a></li>
-                  <li><a class="dropdown-item" href="#">Mittagessen</a></li>
-                  <li><a class="dropdown-item" href="#">Frühstück</a></li>
-                  <li><a class="dropdown-item" href="#">Snacks</a></li>
-                  <li><a class="dropdown-item" href="#">Drinks</a></li>
+                <li><a class="dropdown-item" href="index.html#Abendessen">Abendessen</a></li>
+              <li><a class="dropdown-item" href="index.html#Mittagessen">Mittagessen</a></li>
+              <li><a class="dropdown-item" href="index.html#Frühstück">Frühstück</a></li>
+              <li><a class="dropdown-item" href="index.html#Snacks">Snacks</a></li>
+              <li><a class="dropdown-item" href="index.html#Getränke">Getränke</a></li>
                 </ul>
               </li>
             </ul>

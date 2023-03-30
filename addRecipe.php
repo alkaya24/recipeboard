@@ -65,11 +65,11 @@
                   Entdecken
                 </a>
                 <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">Abendessen</a></li>
-                  <li><a class="dropdown-item" href="#">Mittagessen</a></li>
-                  <li><a class="dropdown-item" href="#">Frühstück</a></li>
-                  <li><a class="dropdown-item" href="#">Snacks</a></li>
-                  <li><a class="dropdown-item" href="#">Drinks</a></li>
+                <li><a class="dropdown-item" href="index.html#Abendessen">Abendessen</a></li>
+              <li><a class="dropdown-item" href="index.html#Mittagessen">Mittagessen</a></li>
+              <li><a class="dropdown-item" href="index.html#Frühstück">Frühstück</a></li>
+              <li><a class="dropdown-item" href="index.html#Snacks">Snacks</a></li>
+              <li><a class="dropdown-item" href="index.html#Getränke">Getränke</a></li>
                 </ul>
               </li>
             </ul>
@@ -106,11 +106,11 @@
               <option value="1">&lt; 10</option>
               <option value="2">&lt; 20</option>
               <option value="3">&lt; 30</option>
-              <option value="3">&lt; 40</option>
-              <option value="3">&lt; 50</option>
-              <option value="3">&lt; 60</option>
-              <option value="3">&lt; 90</option>
-              <option value="3">&lt; 120</option>
+              <option value="4">&lt; 40</option>
+              <option value="5">&lt; 50</option>
+              <option value="6">&lt; 60</option>
+              <option value="7">&lt; 90</option>
+              <option value="8">&lt; 120</option>
             </select>
             <label for="exampleFormControlInput1" class="form-label form-control-lg">Schwierigkeit</label>
             <select class="form-select" aria-label="Default select example" id="schwierigkeit">

@@ -1,5 +1,3 @@
-
-
 function checkLoggedIn() {
   const isLoggedIn = sessionStorage.getItem('loggedIn');
 
@@ -238,7 +236,7 @@ function displayRecipes(recipes) {
             <div class="card-body">
               <h5 class="card-title">${recipe.title}</h5>
               <p class="card-text">${recipe.ingredients.substring(0, 30)}...</p>
-              <a href="Gericht.html" class="btn btn-primary" target="_blank">Öffnen</a>
+              <a href="Gericht.html" id="${recipe.id}" class="btn btn-primary" target="_blank">Öffnen</a>
             </div>
           </div>
         `;
@@ -285,4 +283,148 @@ function getCategoryName(categoryId) {
       return "";
   }
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+  const carousels = document.querySelectorAll(".owl-carousel");
+
+  carousels.forEach((carousel) => {
+    carousel.addEventListener("click", (event) => {
+      if (event.target.classList.contains("btn")) {
+        const recipeId = event.target.id;
+        localStorage.setItem("selectedRecipeId", recipeId);
+      }
+    });
+  });
+
+  if (window.location.pathname.endsWith("Gericht.html")) {
+    displayRecipeDetails();
+  }
+});
+
+function displayRecipeDetails() {
+  const recipeId = localStorage.getItem("selectedRecipeId");
+
+  if (!recipeId) {
+    // Redirect to the main page if no recipe is selected
+    window.location.href = "index.html";
+    return;
+  }
+
+  fetch(`fetch_recipe_details.php?id=${recipeId}`)
+    .then((response) => response.json())
+    .then((recipe) => {
+      if (recipe) {
+        // Set recipe title
+        const titleCol = document.querySelector("#grid1 .col:first-child");
+        if (titleCol) {
+          const title = titleCol.querySelector("h2");
+          if (title) {
+            title.innerHTML = `Titel: <br> ${recipe.title}`;
+          }
+        }
+
+        // Set recipe duration
+        const duration = document.getElementById("duration");
+        if (duration) {
+          duration.innerText = `${getDurationText(recipe.duration)} Minuten`;
+        }
+
+        // Set recipe difficulty
+        const difficulty = document.getElementById("difficulty");
+        if (difficulty) {
+          difficulty.innerText = getDifficultyText(recipe.difficulty);
+        }
+
+
+        // Set recipe ingredients
+        const ingredientsCol = document.querySelector("#grid1 .col:nth-child(2)");
+        if (ingredientsCol) {
+          const ingredients = ingredientsCol.querySelector("p");
+          if (ingredients) {
+            ingredients.innerHTML = recipe.ingredients;
+          }
+        }
+
+        // Set recipe preparation
+        const preparationCol = document.querySelector("#grid1 .col:nth-child(3)");
+        if (preparationCol) {
+          const preparation = preparationCol.querySelector("p");
+          if (preparation) {
+            preparation.innerHTML = recipe.preparation;
+          }
+        }
+
+        // Set recipe images
+        const images = JSON.parse(recipe.image);
+
+        // Set carousel indicators
+        const carouselIndicators = document.querySelector(".carousel-indicators");
+        carouselIndicators.innerHTML = "";
+
+        images.forEach((_, index) => {
+          const indicatorButton = document.createElement("button");
+          indicatorButton.type = "button";
+          indicatorButton.dataset.bsTarget = "#myCarousel";
+          indicatorButton.dataset.bsSlideTo = index;
+          indicatorButton.setAttribute("aria-label", `Slide ${index + 1}`);
+
+          if (index === 0) {
+            indicatorButton.classList.add("active");
+            indicatorButton.setAttribute("aria-current", "true");
+          }
+
+          carouselIndicators.appendChild(indicatorButton);
+        });
+
+
+        const carouselInner = document.querySelector(".carousel-inner");
+        carouselInner.innerHTML = "";
+
+        images.forEach((image, index) => {
+          const carouselItem = document.createElement("div");
+          carouselItem.classList.add("carousel-item");
+          if (index === 0) {
+            carouselItem.classList.add("active");
+          }
+
+          const overlayImage = document.createElement("div");
+          overlayImage.classList.add("overlay-image");
+          overlayImage.style.backgroundImage = `url(${image})`;
+
+          carouselItem.appendChild(overlayImage);
+          carouselInner.appendChild(carouselItem);
+        });
+      } else {
+        // Redirect to the main page if the recipe is not found
+        window.location.href = "index.html";
+      }
+    });
+}
+
+function getDurationText(index) {
+  const durationOptions = {
+    1: "< 10",
+    2: "< 20",
+    3: "< 30",
+    4: "< 40",
+    5: "< 50",
+    6: "< 60",
+    7: "< 90",
+    8: "< 120",
+  };
+
+  return durationOptions[index] || "";
+}
+
+function getDifficultyText(index) {
+  const difficultyOptions = {
+    1: "Leicht",
+    2: "Mittel",
+    3: "Schwer",
+    4: "Bruder vertrau, mach nicht",
+  };
+
+  return difficultyOptions[index] || "";
+}
+
 
