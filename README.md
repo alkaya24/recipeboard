@@ -1,4 +1,4 @@
-# [www.RecipeBoard.de]([url](https://www.rezepteboard.de/))
+# RecipeBoard
 ## Beschreibung
 Dieses Projekt wurde für das Fach Internet-Technologien entwickelt. Das Ziel war es, eine anspruchsvolle Website für Rezepte zu bauen. Die Website ermöglicht es Benutzern, eigene Rezepte zu erstellen, zu teilen und zu suchen. Die Benutzeroberfläche ist einfach und intuitiv gestaltet, um eine reibungslose Benutzererfahrung zu gewährleisten.
 
