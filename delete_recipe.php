@@ -20,4 +20,4 @@ $stmt = $conn->prepare($query);
 $stmt->bind_param("ii", $recipe_id, $user_id);
 $stmt->execute();
 
-echo json_encode(['status' => 'Rezept wurde gelöscht!']);
+echo "Rezept wurde gelöscht!";

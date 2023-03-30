@@ -23,6 +23,14 @@ document.addEventListener('DOMContentLoaded', function () {
   updateLoginLogoutButtons();
 });
 
+function validateImageCount(input) {
+  const maxFileCount = 5;
+  if (input.files.length > maxFileCount) {
+    alert(`Sie können maximal ${maxFileCount} Bilder auswählen.`);
+    input.value = "";
+  }
+}
+
 function submitRecipe() {
   const title = document.getElementById('titel').value;
   const category = document.getElementById('kategorie').value;
@@ -31,6 +39,12 @@ function submitRecipe() {
   const ingredients = document.getElementById('zutaten').value;
   const preparation = document.getElementById('zubereitung').value;
   const imageFile = document.getElementById('formFileMultiple').files;
+
+  // Prüfen, ob mindestens 1 Bild ausgewählt wurde
+  if (imageFile.length === 0) {
+    alert('Bitte fügen Sie mindestens ein Foto hinzu.');
+    return;
+  }
 
   const formData = new FormData();
   formData.append('title', title);
@@ -54,14 +68,14 @@ function submitRecipe() {
     .then((result) => {
       if (result.status.includes("erfolgreich")) {
         alert(result.status);
-        window.location.href = "index.html";
+        window.location.href = "meineRezepte.php";
       } else {
         alert("Fehler beim Hinzufügen des Rezepts. Bitte versuchen Sie es erneut.");
       }
     })
     .catch((error) => {
       console.error("Error:", error);
-      alert("Fehler beim Hinzufügen des Rezepts. Bitte versuchen Sie es erneut.");
+      alert("Fehler beim Hinzufügen des Rezepts. Bitte versuchen Sie es erneut2.");
     });
 }
 

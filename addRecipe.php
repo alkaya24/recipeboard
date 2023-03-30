@@ -133,32 +133,18 @@
         <div class="col">
           <div>
             <div class="card" style="width: 70%; height: 30em;">
-              <div id="carouselExample" class="carousel slide">
-                <div class="carousel-inner">
-                  <div class="carousel-item active">
+              <div>
+                <div>
+                  <div>
                     <img src="meal.png" class="d-block w-100" alt="...">
                   </div>
-                  <div class="carousel-item">
-                    <img src="logo2.png" class="d-block w-100" alt="...">
-                  </div>
-                  <div class="carousel-item">
-                    <img src="essen1.jpg" class="d-block w-100" alt="...">
-                  </div>
-                </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                  <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                  <span class="visually-hidden">Next</span>
-                </button>
+                
               </div>
               <div class="card-body">
                 <h5 class="card-title">Fotos</h5>
                 <p class="card-text">Füge Bilder des Gerichts hinzu.</p>
                 <div class="mb-3">
-                  <input class="form-control" type="file" id="formFileMultiple" multiple>
+                <input class="form-control" type="file" id="formFileMultiple" multiple accept="image/*" onchange="validateImageCount(this)">
                 </div>
               </div>
             </div>    
