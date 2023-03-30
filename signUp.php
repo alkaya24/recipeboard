@@ -17,67 +17,70 @@
       <title>Sign Up for MeinRezept</title>
     </head>
     <body>
-      <nav class="navbar navbar-expand-lg bg-success">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="index.html">
-            <img src="logo2.png" alt="Bootstrap" width="30" height="30">
-          </a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="index.html">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" data-bs-toggle="modal" data-bs-target="#exampleModal" href="#">Login</a>
-                <a class="nav-link" id="logoutButton" onclick="logoutUser();" href="#" style="display:none;">Logout</a>
-                <!-- Modal -->
-                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                  <div class="modal-dialog">
-                    <form class="modal-content" method="post" action="login.php">
-                      <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">Login</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                      </div>
-                      <div class="modal-body">
-                        <input type="text" id="login-email" placeholder="E-Mail"> </input>
-                        <br>
-                        <input type="password" id="login-password" placeholder="Password"> </input>
-                      </div>
-                      <div class="modal-footer">
-                        <a href="signUp.php" align="left">Noch kein Benutzeraccount?</a>
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Schließen</button>
-                        <button type="button" id="login-button" class="btn btn-success">Login</button>
-                      </div>
-                    </form>
+    <nav class="navbar navbar-expand-lg bg-success">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="index.html">
+        <img src="logo2.png" alt="Bootstrap" width="30" height="30">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="modal" data-bs-target="#exampleModal" href="#">Login</a>
+            <a class="nav-link" id="logoutButton" onclick="logoutUser();" href="#" style="display:none;">Logout</a>
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <form class="modal-content" method="post" action="login.php">
+                  <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Login</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
-                </div>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="addRecipe.php" id="addRecipeLink">Rezept hinzufügen</a>
-              </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Entdecken
-                </a>
-                <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="index.html#Abendessen">Abendessen</a></li>
-              <li><a class="dropdown-item" href="index.html#Mittagessen">Mittagessen</a></li>
-              <li><a class="dropdown-item" href="index.html#Frühstück">Frühstück</a></li>
-              <li><a class="dropdown-item" href="index.html#Snacks">Snacks</a></li>
-              <li><a class="dropdown-item" href="index.html#Getränke">Getränke</a></li>
-                </ul>
-              </li>
+                  <div class="modal-body">
+                    <input type="text" id="login-email" placeholder="E-Mail"> </input>
+                    <br>
+                    <input type="password" id="login-password" placeholder="Password"> </input>
+                  </div>
+                  <div class="modal-footer">
+                    <a href="signUp.php" align="left">Noch kein Benutzeraccount?</a>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Schließen</button>
+                    <button type="button" id="login-button" class="btn btn-success">Login</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="meineRezepte.php" id="myRecipesLink">Meine Rezepte</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="addRecipe.php" id="addRecipeLink">Rezept hinzufügen</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Entdecken
+            </a>
+            <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="index.html#Abendessen">Abendessen</a></li>
+          <li><a class="dropdown-item" href="index.html#Mittagessen">Mittagessen</a></li>
+          <li><a class="dropdown-item" href="index.html#Frühstück">Frühstück</a></li>
+          <li><a class="dropdown-item" href="index.html#Snacks">Snacks</a></li>
+          <li><a class="dropdown-item" href="index.html#Getränke">Getränke</a></li>
             </ul>
-            <form class="d-flex" role="search">
-              <input class="form-control me-2" type="search" placeholder="Suchen" aria-label="Search">
-              <button type="button" class="btn btn-success">Suchen</button>
-            </form>
-          </div>
-        </div>
-      </nav>
+          </li>
+        </ul>
+        <form class="d-flex" role="search">
+          <input class="form-control me-2" type="search" placeholder="Suchen" aria-label="Search">
+          <button type="button" class="btn btn-success">Suchen</button>
+        </form>
+      </div>
+    </div>
+  </nav>
 
       
       <div style="margin: 1em; margin-left: 15%;">

@@ -1,3 +1,7 @@
+<?php
+  session_start();
+  require_once 'config.php';
+?>
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -7,7 +11,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" crossorigin="anonymous"></script>
     <script src="main.js"></script>
-    <link rel="stylesheet" href="MeineRezepte.css">
+    <script src="meineRezepte.js"></script>
+    <link rel="stylesheet" href="meineRezepte.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" 
       integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
@@ -64,6 +69,9 @@
             </div>
           </li>
           <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="meineRezepte.php" id="myRecipesLink">Meine Rezepte</a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="addRecipe.php" id="addRecipeLink">Rezept hinzufügen</a>
           </li>
           <li class="nav-item dropdown">
@@ -106,129 +114,12 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>
-                      <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="">
-                      <a href="#" class="user-link">bananenbrot</a>
-                      <span class="user-subhead">snacks</span>
-                    </td>
-                    <td class="text-center">
-                      Snacks
-                    </td>
-                    <td class="text-center">
-                      <span class="label label-default">Leicht</span>
-                    </td>
-                    <td>
-                      <p class="text-center">30 Minuten</p>
-                    </td>
-                    <td style="width: 20%;" class="text-center">
-                      <a href="#" class="table-link">
-                        <span class="fa-stack">
-                          <i class="fa fa-square fa-stack-2x"></i>
-                          <i class="fa fa-search-plus fa-stack-1x fa-inverse"></i>
-                        </span>
-                      </a>
-                      <a href="#" class="table-link">
-                        <span class="fa-stack">
-                          <i class="fa fa-square fa-stack-2x"></i>
-                          <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
-                        </span>
-                      </a>
-                      <a href="#" class="table-link danger">
-                        <span class="fa-stack">
-                          <i class="fa fa-square fa-stack-2x"></i>
-                          <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
-                        </span>
-                      </a>
-                    </td>
-                  </tr>
                   
-                  <tr>
-                    <td>
-                      <img src="https://bootdey.com/img/Content/avatar/avatar3.png" alt="">
-                      <a href="#" class="user-link">Ryan Gossling</a>
-                      <span class="user-subhead">Registered</span>
-                    </td>
-                    <td>
-                      2013/03/03
-                    </td>
-                    <td class="text-center">
-                      <span class="label label-danger">Banned</span>
-                    </td>
-                    <td>
-                      <a href="#">jack@nicholson</a>
-                    </td>
-                    <td style="width: 20%;">
-                      <a href="#" class="table-link">
-                        <span class="fa-stack">
-                          <i class="fa fa-square fa-stack-2x"></i>
-                          <i class="fa fa-search-plus fa-stack-1x fa-inverse"></i>
-                        </span>
-                      </a>
-                      <a href="#" class="table-link">
-                        <span class="fa-stack">
-                          <i class="fa fa-square fa-stack-2x"></i>
-                          <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
-                        </span>
-                      </a>
-                      <a href="#" class="table-link danger">
-                        <span class="fa-stack">
-                          <i class="fa fa-square fa-stack-2x"></i>
-                          <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
-                        </span>
-                      </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <img src="https://bootdey.com/img/Content/avatar/avatar4.png" alt="">
-                      <a href="#" class="user-link">Emma Watson</a>
-                      <span class="user-subhead">Registered</span>
-                    </td>
-                    <td>
-                      2004/01/24
-                    </td>
-                    <td class="text-center">
-                      <span class="label label-warning">Pending</span>
-                    </td>
-                    <td>
-                      <a href="#">humphrey@bogart.com</a>
-                    </td>
-                    <td style="width: 20%;">
-                      <a href="#" class="table-link">
-                        <span class="fa-stack">
-                          <i class="fa fa-square fa-stack-2x"></i>
-                          <i class="fa fa-search-plus fa-stack-1x fa-inverse"></i>
-                        </span>
-                      </a>
-                      <a href="#" class="table-link">
-                        <span class="fa-stack">
-                          <i class="fa fa-square fa-stack-2x"></i>
-                          <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
-                        </span>
-                      </a>
-                      <a href="#" class="table-link danger">
-                        <span class="fa-stack">
-                          <i class="fa fa-square fa-stack-2x"></i>
-                          <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
-                        </span>
-                      </a>
-                    </td>
-                  </tr>
-                  
-                  
+                 
                 </tbody>
               </table>
             </div>
-            <ul class="pagination pull-right">
-              <li><a href="#"><i class="fa fa-chevron-left"></i></a></li>
-              <li><a href="#">1</a></li>
-              <li><a href="#">2</a></li>
-              <li><a href="#">3</a></li>
-              <li><a href="#">4</a></li>
-              <li><a href="#">5</a></li>
-              <li><a href="#"><i class="fa fa-chevron-right"></i></a></li>
-            </ul>
+            
           </div>
         </div>
       </div>

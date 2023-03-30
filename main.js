@@ -3,12 +3,19 @@ function checkLoggedIn() {
 
   if (isLoggedIn) {
     document.getElementById('addRecipeLink').href = "addRecipe.php";
+    document.getElementById('myRecipesLink').href = "meineRezepte.php";
   } else {
     document.getElementById('addRecipeLink').href = "#";
     document.getElementById('addRecipeLink').setAttribute('data-bs-toggle', 'modal');
     document.getElementById('addRecipeLink').setAttribute('data-bs-target', '#exampleModal');
+
+    // Hinzufügen von Code für myRecipesLink
+    document.getElementById('myRecipesLink').href = "#";
+    document.getElementById('myRecipesLink').setAttribute('data-bs-toggle', 'modal');
+    document.getElementById('myRecipesLink').setAttribute('data-bs-target', '#exampleModal');
   }
 }
+
 
 window.addEventListener('DOMContentLoaded', checkLoggedIn);
 
