@@ -38,7 +38,7 @@ $result = $stmt->execute(); // Führt die SQL-Anweisung aus und speichert das Er
 if ($result) {
     echo json_encode(['status' => 'Rezept wurde erfolgreich hinzugefügt']); // Gibt eine Erfolgsmeldung im JSON-Format zurück
 } else {
-    echo "Error: " . $sql . "<br>" . $conn->error; // Gibt eine Erfolgsmeldung im JSON-Format zurück
+    echo json_encode(['status' => 'Fehler beim Hinzufügen. Versuchen Sie es später erneut. ']); // Gibt eine Erfolgsmeldung im JSON-Format zurück
 }
 
 $stmt->close(); // Schließt die SQL-Anweisung

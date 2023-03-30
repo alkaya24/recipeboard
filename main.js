@@ -211,12 +211,12 @@ function submitRecipe() {
         alert(result.status);
         window.location.href = "meineRezepte.php";
       } else {
-        alert("Fehler beim Hinzufügen des Rezepts. Bitte versuchen Sie es erneut.");
+        alert(result.status);
       }
     })
     .catch((error) => {
       console.error("Error:", error);
-      alert("Fehler beim Hinzufügen des Rezepts. Bitte versuchen Sie es erneut2.");
+      alert("Fehler beim Hinzufügen des Rezepts. Bitte versuchen Sie es erneut.");
     });
 }
 

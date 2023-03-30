@@ -36,16 +36,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         header("Location: index.html");
                     } else {
                         // Fehler bei der Passwortüberprüfung
-                        echo json_encode(['status' => 'error', 'message' => 'Falsches Passwort.']);
+                        echo json_encode(['status' => 'Falsches Passwort.']);
                     }
                 }
             } else {
                 // Kein Benutzer mit der angegebenen E-Mail-Adresse gefunden
-                echo "Kein Benutzer mit dieser E-Mail gefunden.";
+                echo json_encode(['status' => 'Kein Benutzer mit dieser E-Mail gefunden.']);
             }
         } else {
             // Fehler beim Ausführen der SQL-Abfrage
-            echo "Fehler bei der Anmeldung. Bitte versuchen Sie es später erneut.";
+            echo json_encode(['status' => 'Fehler bei der Anmeldung. Bitte versuchen Sie es später erneut.']);
         }
         // Schließen des Statements
         mysqli_stmt_close($stmt);
