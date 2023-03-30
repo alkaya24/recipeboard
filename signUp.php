@@ -104,7 +104,8 @@ require_once 'config.php';
         </ul>
         <!-- Eingabefeld für die Suchfunktion -->
         <form class="d-flex" role="search">
-          <input class="form-control me-2" type="search" placeholder="Suchen" aria-label="Search">
+        <input type="text" class="form-control" id="searchBar" oninput="searchRecipes()"
+            placeholder="Suche nach Rezepten...">
           <button type="button" class="btn btn-success">Suchen</button>
         </form>
       </div>
