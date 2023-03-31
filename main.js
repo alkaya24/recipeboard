@@ -285,7 +285,7 @@ function displayRecipes(recipes) {
             <div class="card-body">
               <h5 class="card-title">${recipe.title}</h5>
               <p class="card-text">${recipe.ingredients.substring(0, 30)}...</p>
-              <a href="Gericht.html" id="${recipe.id}" class="btn btn-primary" target="_blank">Öffnen</a>
+              <a href="Gericht.html" id="${recipe.id}" class="btn btn-primary">Öffnen</a>
             </div>
           </div>
         `;
