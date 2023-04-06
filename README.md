@@ -38,7 +38,7 @@ Nachdem das Projekt erfolgreich installiert wurde, können Sie die folgenden Fun
 - Mobiloptimiert: Die Website ist responsive und optimiert für Mobilgeräte
 
 ## Veröffentlichung
-Die Webseite ist unter der folgenden URL öffentlich zugänglich: rezepteboard.de . Hier können Sie die Webseite in Aktion sehen und durch die verfügbaren Rezepte stöbern.
+Die Webseite ist unter der folgenden URL öffentlich zugänglich: [rezepteboard.de](rezepteboard.de). Hier können Sie die Webseite in Aktion sehen und durch die verfügbaren Rezepte stöbern.
 
 ## Autoren
 Dieses Projekt wurde von **Serhat Emrek (Matrikelnr: 3790967)** und **Ali Haydar Kaya (Matrikelnr: 3813398)** erstellt.
