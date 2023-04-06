@@ -39,6 +39,7 @@ Nachdem das Projekt erfolgreich installiert wurde, können Sie die folgenden Fun
 
 ## Veröffentlichung
 Die Webseite ist unter der folgenden URL öffentlich zugänglich: [rezepteboard.de](https://rezepteboard.de)
+
 Hier können Sie die Webseite in Aktion sehen und durch die verfügbaren Rezepte stöbern.
 
 ## Autoren
